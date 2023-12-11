@@ -1,0 +1,42 @@
+How to execute?:
+1, make sure you have required libraries and packages:
+import argparse
+import time
+import random
+import unittest
+from sympy import nextprime, isprime, gcd, mod_inverse
+
+2, open the project you want to run in terminal
+(1)right click
+(2)find "Open In"
+(3)Click "Terminal"
+
+3, execute the following command correspondent:
+[1] for elgamal project:
+(1)elgamal_key_generation_by_bob.py
+command: python elgamal_key_generation_by_bob.py
+(2)elgamal_alice.py
+command: python elgamal_alice.py 123456 # (replace 123456 with the Message Alice Want To Send)
+(3)elgamal_bob.py
+command: python elgamal_bob.py 123456789 987654321 # (replace 123456789 987654321 with C1 and C2 for encrypted message)
+(4)elgamal_eve.py
+command: python elgamal_eve.py elgamal_encrypted_message.txt
+
+[2] for rsa project:
+(1)rsa_key_generation.py
+command: python rsa_key_generation.py
+(2)rsa_alice.py
+command: python rsa_alice.py 123456 # (replace 123456 with the Message Alice Want To Send)
+(3)rsa_bob.py
+command: python rsa_bob.py rsa_encrypted_message.txt
+(4)rsa_eve.py
+command: python rsa_eve.py rsa_encrypted_message.txt
+
+Others:
+For elgamal_public_keys.txt: Prime number p, Primitive root g, Public Key B
+For elgamal_encrypted_message.txt: Encrypted Message Part 1 (c1), Encrypted Message Part 2 (c2)
+（c1 is the part which not contain the encripted information）
+For elgamal_private_key_only_accessible_by_bob.txt: private key of bob
+
+
+
