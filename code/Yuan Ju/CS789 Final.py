@@ -8,21 +8,6 @@ Created on Sat Dec 9 22:34:03 2023
 
 import random
 
-def gcd(a, b):
-    if a < b:
-        return gcd(b, a)
-    elif a % b == 0:
-        return b;
-    else:
-        return gcd(b, a % b)
- 
-# Generating large random numbers
-def gen_key(q):
-    key = random.randint(pow(10, 20), q)
-    while gcd(q, key) != 1:
-        key = random.randint(pow(10, 20), q)
- 
-    return key
 def extended_gcd(a, b):
     if a == 0:
         return b, 0, 1
@@ -97,7 +82,6 @@ def random_prime(n):
             break;            
     return r
 
-
 def findPrimitiveRoot(p):
     import math
     arr = []
@@ -126,38 +110,3 @@ def findPrimitiveRoot(p):
             return primitive
     return -1
  
-# Asymmetric encryption
-def elgamal_encrypt(msg, q, h, g):
- 
-    en_msg = []
- 
-    k = gen_key(q)# Private key for sender
-    s = fastExp(h, k, q)
-    p = fastExp(g, k, q)
-     
-    for i in range(0, len(msg)):
-        en_msg.append(msg[i])
- 
-    for i in range(0, len(en_msg)):
-        en_msg[i] = s * ord(en_msg[i])
- 
-    return en_msg, p
- 
-def elgamal_decrypt(en_msg, p, key, q):
- 
-    dr_msg = []
-    h = fastExp(p, key, q)
-    for i in range(0, len(en_msg)):
-        dr_msg.append(chr(int(en_msg[i]/h)))
-         
-    return dr_msg
-
-
-def RSA_encrypt(ptxt, pub1, pub2):
-    return fastExp(ptxt, pub1, pub2)
-
-
-def RSA_decrypt(cipher, pv1, pub2):
-    return fastExp(cipher, pv1, pub2)
-
-
