@@ -18,7 +18,6 @@ def gcd(a, b):
  
 # Generating large random numbers
 def gen_key(q):
- 
     key = random.randint(pow(10, 20), q)
     while gcd(q, key) != 1:
         key = random.randint(pow(10, 20), q)
@@ -127,27 +126,14 @@ def findPrimitiveRoot(p):
             return primitive
     return -1
  
-# Modular exponentiation
-def power(a, b, c):
-    x = 1
-    y = a
-
-    while b > 0:
-        if b % 2 != 0:
-            x = (x * y) % c;
-        y = (y * y) % c
-        b = int(b / 2)
- 
-    return x % c
- 
 # Asymmetric encryption
 def elgamal_encrypt(msg, q, h, g):
  
     en_msg = []
  
     k = gen_key(q)# Private key for sender
-    s = power(h, k, q)
-    p = power(g, k, q)
+    s = fastExp(h, k, q)
+    p = fastExp(g, k, q)
      
     for i in range(0, len(msg)):
         en_msg.append(msg[i])
@@ -160,7 +146,7 @@ def elgamal_encrypt(msg, q, h, g):
 def elgamal_decrypt(en_msg, p, key, q):
  
     dr_msg = []
-    h = power(p, key, q)
+    h = fastExp(p, key, q)
     for i in range(0, len(en_msg)):
         dr_msg.append(chr(int(en_msg[i]/h)))
          
