@@ -15,19 +15,28 @@ class Elgamal:
         self.x = x
         self.p = p
         self.y = fastExp(self.g,self.x,self.p)
-        self.Limit_searching_time = 3600
+        self.Limit_searching_time = 3
 
-    def encrypt(self,msg):
+    def encrypt(self, msg):
+        en_msg = []
         r = random.randint(2,self.p-2)
-        print("r",r)
-        c1 = fastExp(self.g,r,self.p)
-        c2 = (msg*fastExp(self.y,r,self.p)) % self.p
-        return c1,c2
-    
-    def decrypt(self,c1,c2):
-        a = fastExp(c1,self.x,self.p)
-        msg = (c2 * inverse(a,self.p)) % self.p
-        return msg
+        c = fastExp(self.g, r, self.p)
+        c2 = fastExp(self.y, r, self.p)
+         
+        for i in range(0, len(msg)):
+            en_msg.append(msg[i])
+        for i in range(0, len(en_msg)):
+            en_msg[i] = c2 * ord(en_msg[i])
+        return en_msg, c
+ 
+
+    def decrypt(self, en_msg, c):
+        temp = []
+        a = fastExp(c, self.x, self.p)
+        for i in range(0, len(en_msg)):
+            temp.append(chr(int(en_msg[i]/a)))
+        msg = ""
+        return msg.join(temp)
     
     def Elgamal_decipher(self,c1,c2):
         start_time = time.time()

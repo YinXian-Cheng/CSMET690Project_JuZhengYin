@@ -8,12 +8,14 @@ Created on Sun Dec 10 20:11:19 2023
 
 from CS789Final import fastExp,inverse
 
+import time
 class rsa:
     def __init__(self,p,q):
         self.p = p
         self.q = q
         self.n = p*q
         self.t = (p-1)*(q-1)
+        self.Limit_searching_time = 3
     def gcd(self, a, b):
         if a < b:
             return self.gcd(b, a)
@@ -22,7 +24,7 @@ class rsa:
         else:
             return self.gcd(b, a % b)
     def public_key(self):
-        e = pow(2,15)+1
+        e = pow(2,31)+1
         while self.gcd(e, self.t) != 1:
             e += 2
         return e
@@ -37,11 +39,15 @@ class rsa:
         return fastExp(en_msg, self.private_key(), self.n)
     
     '''n-modulo, c-encrypted messsage, e-public key'''
-    def decipher(n, c, e):
+    def decipher(self, c, e):
+        start_time = time.time()
         #try to calculate one p-q pair
         data = []
-        for i in range(2, n):
-            if n % i == 0:
+        for i in range(2, self.n):
+            if time.time() - start_time > self.Limit_searching_time:
+                print("out of time limit")
+                return -1
+            if self.n % i == 0:
                 data.append(i)
         # using euler theorem p,q are data[0],data[1]
         a = (data[0] - 1) * (data[1] - 1)
@@ -50,4 +56,4 @@ class rsa:
         for i in range(2, a):
             if i * e % a == 1:
                 d = i
-        return c ** d % n
+        return c ** d % self.n
