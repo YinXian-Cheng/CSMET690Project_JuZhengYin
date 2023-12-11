@@ -8,31 +8,6 @@ Created on Sat Dec 9 22:34:03 2023
 
 import random
 
-def extended_gcd(a, b):
-    if a == 0:
-        return b, 0, 1
-    else:
-        gcd, x, y = extended_gcd(b % a, a)
-        return gcd, y - (b // a) * x, x
- 
-def generate_public_key(p,q):
-    n=p*q
-    phi=(p-1)*(q-1)
-    e=7
-    _,d,_=extended_gcd(7, phi)
-    return n,d,e
-
-def generate_key(p):
-    a=format(p,"b")
-    key=[]
-    for i in a:
-        key.append(i)
-    while(1):
-        if len(key)>=1024:
-            break
-        key.insert(0,0)
-    return key
-            
 def breakdown(N):
     r=0
     while(1):

@@ -29,12 +29,12 @@ class rsa:
         return -1 #not find
     
     def private_key(self):
-        j = 0
-        h = self.public_key()
+        d = 0
+        e = self.public_key()
         while(True):
-            if (j*h)%self.t == 1:
-                return j
-            j+=1
+            if (d*e)%self.t == 1:
+                return d
+            d+=1
         return -1 #not find
     def RSA_encrypt(msg, public_key, n):
         return fastExp(msg, public_key, n)
@@ -42,5 +42,19 @@ class rsa:
     
     def RSA_decrypt(en_msg, private_key, n):
         return fastExp(en_msg, private_key, n)
-
-
+    
+    '''n-modulo, c-encrypted messsage, e-public key'''
+    def decipher(n, c, e):
+        #try to calculate one p-q pair
+        data = []
+        for i in range(2, n):
+            if n % i == 0:
+                data.append(i)
+        # using euler theorem p,q are data[0],data[1]
+        a = (data[0] - 1) * (data[1] - 1)
+        #try to reach a private index
+        d = 0
+        for i in range(2, a):
+            if i * e % a == 1:
+                d = i
+        return c ** d % n
