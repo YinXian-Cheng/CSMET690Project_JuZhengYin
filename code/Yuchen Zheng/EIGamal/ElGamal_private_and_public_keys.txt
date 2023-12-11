@@ -1,0 +1,2 @@
+ElGamal Private Key: 147035761485578403
+ElGamal Public Key: 187217906587087019

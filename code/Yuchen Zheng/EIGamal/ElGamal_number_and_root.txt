@@ -1,0 +1,2 @@
+Prime number (p): 1008158228250056683
+Primitive root (g): 386158545107796321
