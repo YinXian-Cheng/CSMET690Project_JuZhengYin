@@ -40,21 +40,45 @@ def generate_large_prime(keysize=1024):
             return num
 
 def find_primitive_root(p):
-    """ Find a primitive root for prime p. """
+    """ Find a primitive root for prime p """
     if p == 2:
         return 1
-    p1 = 2
-    p2 = (p - 1) // p1
 
-    # Test random g's until one is found that is a primitive root mod p
+    # Function to find all prime factors of a given number n
+    def find_prime_factors(n):
+        prime_factors = set()
+        # Count the number of 2s that divide n
+        while n % 2 == 0:
+            prime_factors.add(2)
+            n //= 2
+        # n must be odd at this point, so a skip of 2 is used (i.e., i = i + 2)
+        for i in range(3, int(n**0.5) + 1, 2):
+            # While i divides n, add i and divide n
+            while n % i == 0:
+                prime_factors.add(i)
+                n //= i
+        # If n is a prime number greater than 2
+        if n > 2:
+            prime_factors.add(n)
+        return prime_factors
+
+    # Find prime factors of p-1
+    prime_factors = find_prime_factors(p - 1)
+
+
+    # Test potential g's using random selection
+    tested_g_values = set()
     while True:
         g = random.randint(2, p - 1)
-        if pow(g, (p - 1) // p1, p) != 1:
-            if pow(g, (p - 1) // p2, p) != 1:
-                return g
+        if g in tested_g_values:  # Skip if this g has already been tested
+            continue
+        tested_g_values.add(g)
+
+        if all(pow(g, (p - 1) // factor, p) != 1 for factor in prime_factors):
+            return g
 
 # Generating a large prime p and its primitive root g
-p = generate_large_prime(1024)
+p = generate_large_prime(60)
 g = find_primitive_root(p)
 
 # Writing to a file
@@ -62,6 +86,3 @@ file_name = "ElGamal_number_and_root.txt"
 with open(file_name, 'w') as file:
     file.write(f"Prime number (p): {p}\n")
     file.write(f"Primitive root (g): {g}")
-
-
-
