@@ -4,24 +4,10 @@ Created on Sun Dec 10 20:11:18 2023
 
 @author: 35132
 """
-from CS789_Final import fastExp
+from CS789Final import fastExp,inverse
 import random
 import time
 
-def extended_gcd(a, b):
-    if a == 0:
-        return b, 0, 1
-    else:
-        gcd, x, y = extended_gcd(b % a, a)
-        return gcd, y - (b // a) * x, x
-    
-def inverse(a, m):
-    g, x, y = extended_gcd(a, m)
-    if g != 1:
-        return -1 #not exist
-    else:
-        return x % m
-    
 class Elgamal:
     '''g-generator, y-public key, p-modulus, x-private key'''
     def __init__(self,g,x,p):

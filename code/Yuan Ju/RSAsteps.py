@@ -6,7 +6,7 @@ Created on Sun Dec 10 20:11:19 2023
 """
 
 
-from CS789_Final import fastExp
+from CS789Final import fastExp,inverse
 
 class rsa:
     def __init__(self,p,q):
@@ -21,27 +21,20 @@ class rsa:
             return b;
         else:
             return self.gcd(b, a % b)
-        
     def public_key(self):
-        for i in range(2,self.t):
-            if self.gcd(i, self.t)==1:
-                return i
-        return -1 #not find
+        e = pow(2,15)+1
+        while self.gcd(e, self.t) != 1:
+            e += 2
+        return e
     
     def private_key(self):
-        d = 0
         e = self.public_key()
-        while(True):
-            if (d*e)%self.t == 1:
-                return d
-            d+=1
-        return -1 #not find
-    def RSA_encrypt(msg, public_key, n):
-        return fastExp(msg, public_key, n)
+        return inverse(e, self.t)
+    def RSA_encrypt(self, msg):
+        return fastExp(msg, self.public_key(), self.n)
     
-    
-    def RSA_decrypt(en_msg, private_key, n):
-        return fastExp(en_msg, private_key, n)
+    def RSA_decrypt(self, en_msg):
+        return fastExp(en_msg, self.private_key(), self.n)
     
     '''n-modulo, c-encrypted messsage, e-public key'''
     def decipher(n, c, e):
