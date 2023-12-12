@@ -15,7 +15,7 @@ class rsa:
         self.q = q
         self.n = p*q
         self.t = (p-1)*(q-1)
-        self.Limit_searching_time = 3
+        self.Limit_searching_time = 0.5
     def gcd(self, a, b):
         if a < b:
             return self.gcd(b, a)

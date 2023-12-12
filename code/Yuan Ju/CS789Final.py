@@ -84,7 +84,7 @@ def gcd(a,b):
         a, b = b, a % b
     return a
 
-def primitiveRoots(m):
+def primitiveRoots_extra(m):
     results = []
     s = set(i for i in range (1, m) if gcd(i, m) == 1)
     for g in range(1, m):
@@ -94,3 +94,45 @@ def primitiveRoots(m):
     rand = random.randint(0,len(results)-1)
     print("primitive roots of",m,'are',results)
     return results[rand]
+def findPrimeFactors_1(n):
+    prime_factors = []
+    while n % 2 == 0:
+        prime_factors.append(2)
+        n >>= 1
+    c = 0
+    for i in range(3, int(pow(n,0.5))+1, 2):
+        while MillerRabin(i,10) and n % i == 0:
+            prime_factors.append(i)
+            n //= i
+            print("n,i",n,i)
+        if MillerRabin(n,10):
+            prime_factors.append(n)
+            break
+    return prime_factors
+def findPrimeFactors(n):
+    prime_factors = []
+    while n % 2 == 0:
+        prime_factors.append(2)
+        n >>= 1
+    for i in range(3, int(pow(n,0.5))+1, 2):
+        while n % i == 0:
+            prime_factors.append(i)
+            n //= i
+    if n > 2:
+        prime_factors.append(n)
+    return prime_factors
+def checkPrimitiveRoot(num,p,factors):
+    if all(fastExp(num, (p - 1) // factor, p) != 1 for factor in factors):
+        return True
+    return False
+def primitiveRoot(p):
+    if p == 2:
+        return 1
+    prime_factors = findPrimeFactors(p - 1)
+    temp = []
+    while True:
+        g = random.randint(2, p - 1)
+        if not g in temp:
+            temp.append(g)
+        if checkPrimitiveRoot(g,p,prime_factors):
+            return g

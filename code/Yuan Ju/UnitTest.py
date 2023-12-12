@@ -105,3 +105,8 @@ if __name__== '__main__':
     c1,c2 = Elgamal.encrypt(msg)
     assert(Elgamal.decrypt(c1, c2)==msg)
     print("ElGamal test success\n")
+    e = ElGamalsteps.Elgamal(386158545107796321,147035761485578403,1008158228250056683)
+    print(e.decrypt_old(883003325782855760,744730117350543654))
+    msg = "1234"
+    c1,c2 = Elgamal.encrypt_old(int(msg))
+    print(e.decrypt_old(c1,c2))
