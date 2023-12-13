@@ -106,12 +106,11 @@ def primitiveRoots_extra(m):
     return results[rand]
 
 
-def findPrimeFactors_1(n):
+def findPrimeFactors(n):
     prime_factors = []
     while n % 2 == 0:
         prime_factors.append(2)
         n >>= 1
-    c = 0
     for i in range(3, int(pow(n, 0.5)) + 1, 2):
         while MillerRabin(i, 10) and n % i == 0:
             prime_factors.append(i)
@@ -120,20 +119,6 @@ def findPrimeFactors_1(n):
         if MillerRabin(n, 10):
             prime_factors.append(n)
             break
-    return prime_factors
-
-
-def findPrimeFactors(n):
-    prime_factors = []
-    while n % 2 == 0:
-        prime_factors.append(2)
-        n >>= 1
-    for i in range(3, int(pow(n, 0.5)) + 1, 2):
-        while n % i == 0:
-            prime_factors.append(i)
-            n //= i
-    if n > 2:
-        prime_factors.append(n)
     return prime_factors
 
 

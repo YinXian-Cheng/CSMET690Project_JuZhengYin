@@ -110,3 +110,34 @@ if __name__== '__main__':
     msg = "1234"
     c1,c2 = Elgamal.encrypt_old(int(msg))
     print(e.decrypt_old(c1,c2))
+
+    '''Elgamal process'''
+    print("\nElgamal process")
+    p = int(input("enter prime p: "))
+    g = int(input("enter generator g"))
+    x = random.randint(1,p-2)
+    Elgamal = ElGamalsteps.Elgamal(g,x,p)
+    branch = input("Choose function: 0--encrypt, 1--decrypt, else--wrong")
+    if branch!='0' or branch !='1':
+        print("wrong input")
+    elif branch =='0':
+        msg = int(input("enter message"))
+        c1,c2 = Elgamal.encrypt_old(msg)
+        print('c1:',c1,'c2',c2)
+    elif branch == '1':
+        c1 = int(input("enter cipher text1"))
+        c2 = int(input("enter cipher text2"))
+        print("original message:",Elgamal.decrypt_old(c1,c2))
+
+    '''rsa process'''
+    print("\nrsa process")
+    rsa = RSAsteps.rsa(int(input("please enter prime p")), int(input("please enter prime q")))
+    branch = input("Choose function: 0--encrypt, 1--decrypt, else--wrong")
+    if branch!='0' or branch !='1':
+        print("wrong input")
+    elif branch =='0':
+        msg = int(input("enter message"))
+        en_msg = rsa.RSA_encrypt(msg)
+        print('encrypted message:',msg)
+    elif branch == '1':
+        print("original message:",rsa.RSA_decrypt(int(input("please enter encrypted message"))))
