@@ -1,0 +1,10 @@
+Alice got form Bob:
+
+prime: 2039091589 next prime: 97 public key component: 1660146964
+
+The message want to sent is: 114514
+
+Alice sent to Bob:
+
+Encrypted Message Part 1 (c1): 1492938363
+Encrypted Message Part 2 (c2): 719369330

@@ -1,0 +1,10 @@
+Alice got form Bob:
+
+public key (e, n) (65537, 2263088288228123623)
+
+The message want to sent is: 114514
+
+Alice sent to Bob:
+
+Encrypted Message: 1779124772201787964
+

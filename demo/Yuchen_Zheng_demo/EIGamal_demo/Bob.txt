@@ -1,0 +1,19 @@
+Bob kept:
+
+ElGamal Private Key: 17267151625864205
+
+Bob sent to Alice:
+
+Prime number (p): 22987569461271011
+Primitive root (g): 13538667459678866
+ElGamal Public Key: 17487347368702596
+
+Bob got from Alice:
+
+Generate Message and Send to Bob:
+message encrypted.
+Message sent by Alice. Encrypted Message: (2786956822199716, 7751084479030176)
+
+Bob Decrypted and got:
+
+135724680
