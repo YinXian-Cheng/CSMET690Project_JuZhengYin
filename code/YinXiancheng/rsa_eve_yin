@@ -1,0 +1,11 @@
+1, Get Public key and Encrypted data:
+RSA public_key: (65537, 2263088288228123623)
+Encrypted message got: 1710392576673917988
+
+2, Start Decryption
+python rsa_eve.py rsa_encrypted_message.txt
+RSA public key (e, n) got by Eve: 65537 2263088288228123623
+Encrypted message got by Eve: 1710392576673917988
+Guessed private keys: 1417963123 * 1596013501 = 2263088288228123623
+ Computed Private Exponent (d): 843534501597741473
+ Eve's Successful Guess: Decrypted Message: 114514

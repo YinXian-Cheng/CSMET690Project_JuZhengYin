@@ -1,0 +1,20 @@
+1, Key generation:
+public keys:
+2039091589,97,1660146964
+private keys:
+628200838
+
+2, Share public key to Alice:
+public keys:
+2039091589,97,1660146964
+
+3,EIGamal Alice(Yuchen Zheng) sent Encrypted Message to Bob:
+Encrypted Message Part 1 (c1): 1492938363
+Encrypted Message Part 2 (c2): 719369330
+
+4,Decrypt
+yinxc@crc-dot1x-nat-10-239-112-210 elgamal_project % python elgamal_bob.py 1492938363 719369330
+private key m of bob: 628200838
+public key of bob: 2039091589 , 97 , 1660146964
+Encrypted message got: 1492938363 , 719369330
+Decrypted Message: 114514

@@ -1,0 +1,8 @@
+1,Get Public Key from Alice(Yuchen Zheng):
+Prime number (p): 22987569461271011
+Primitive root (g): 13538667459678866
+ElGamal Public Key: 17487347368702596
+
+2,Generate Message and Send to Bob:
+Original Message: 135724680
+message encrypted, sent by Alice. Encrypted Message: (2786956822199716, 7751084479030176)
