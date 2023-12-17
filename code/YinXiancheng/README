@@ -38,5 +38,6 @@ For elgamal_encrypted_message.txt: Encrypted Message Part 1 (c1), Encrypted Mess
 （c1 is the part which not contain the encripted information）
 For elgamal_private_key_only_accessible_by_bob.txt: private key of bob
 
-
-
+For rsa_encrypted_message.txt: encrypted_message
+For rsa_private_key.txt: (d, n)
+rsa_public_key.txt: (e, n)
